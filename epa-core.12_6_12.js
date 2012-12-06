@@ -301,9 +301,9 @@ var epaGA_hostDomain= epaGA_hostArray.join('.').toLowerCase();
 	 passToGA="one and done visitor"
 
 	}
-	
-	/* UTMA Param */
-	
+
+	/* START For Cross Domain Tracking Use Visitor ID from __utma query param instead of cookie */
+
 	function getQuerystring(key, default_)
 {
   if (default_==null) default_="";
@@ -316,16 +316,16 @@ var epaGA_hostDomain= epaGA_hostArray.join('.').toLowerCase();
     return qs[1];
 }	
 
-if(window.location.href.indexOf('utma') > 1){
-	passToGA = getQuerystring('utma');
+if(window.location.href.indexOf('__utma') > 1){
+	passToGA = getQuerystring('__utma').split('.')[1];
 }//if 
 else{
 	//nothing
 }//else
 
-/* End UTMA Param */
+/* END For Cross Domain Tracking Use Visitor ID from __utma query param instead of cookie  */
 	
-
+	
  // Page Level Google Analytics Code
  
  window._gaq.push(['_setAccount', 'UA-32633028-1']);
